@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "White Chocolate Macadamia Nut",
-      "quantity": 10,
+      "quantity": 8,
       "image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2ulRUKl5PT6VHyIxZ94EVgHaLH%26pid%3DApi&f=1&ipt=30e8d1130bed859686a948b330acaaa559cf30f62df2f0b0bfff382be2b6de58&ipo=images",
       "isFavorite": true
     },
@@ -19,21 +19,14 @@
       "name": "Peanut Butter",
       "quantity": 0,
       "image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ta1yNo8recUQfI6GrIIJVwHaLH%26pid%3DApi&f=1&ipt=c176c28774a700931b19a13db2b904fa29f9ecff976cbb70fee5a2bc075e4b67&ipo=images",
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": 4,
       "name": "Chocolate Chip",
-      "quantity": 10,
+      "quantity": 8,
       "image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP._p_q5ZjpZwXFsjlTrHpW-QHaKx%26pid%3DApi&f=1&ipt=a213cfafd42096c97544bdf8ba24bca1059a376dd1454175221b50d20c0cdcfe&ipo=images",
       "isFavorite": false
-    },
-    {
-      "name": "Coconut Chocolate",
-      "image_url": "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fencrypted-tbn0.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcR4DM3S633UtXSKh6jMYcHOlzk2kDPh8KAofAdTCZJV_5QFCTU%26s&sp=1677675919Tfb3c887625fcdeb6367a5e440034e9afabb0d0a368bae8f0e9fd70e6fec315f3",
-      "quantity": 12,
-      "isFavorite": true,
-      "id": 5
     }
   ]
 }
