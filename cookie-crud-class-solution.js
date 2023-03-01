@@ -39,7 +39,7 @@ function renderCookie(cookie) {
     cookieImage.src = cookie.image_url
     favoriteBtn.textContent = "☆"
     deleteBtn.textContent = "EAT ALL"
-    decrementBtn.textContent = "EAT ONE"
+    decrementBtn.textContent = "eat one"
 
     cookieCard.id = "cookie-card"
 
@@ -59,7 +59,6 @@ function deleteCookie(cookie, cookieCard) {
 }
 
 function updateQuantity(cookie, cookieQuantity) {
-
     let newQuantity = cookie.quantity
     newQuantity--
     cookieQuantity.textContent = `cookies in stash: ${newQuantity}`

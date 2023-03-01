@@ -20,7 +20,7 @@ function renderCookie(cookie) {
     cookieImage.src = cookie.image_url
 
     const decrementBtn = document.createElement("button")
-    decrementBtn.textContent = cookie.quantity > 0 ? "EAT ONE" : "none left :\("
+    decrementBtn.textContent = cookie.quantity > 0 ? "eat one" : "none left :\("
     decrementBtn.addEventListener("click", () => {
         let newQuantity = --cookie.quantity
         if (newQuantity <= 0) {
