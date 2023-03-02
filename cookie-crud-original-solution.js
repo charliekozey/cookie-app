@@ -20,12 +20,16 @@ function renderCookie(cookie) {
     cookieImage.src = cookie.image_url
 
     const decrementBtn = document.createElement("button")
+    if (cookie.quantity = "0") {
+        decrementBtn.disabled = true
+    }
     decrementBtn.textContent = cookie.quantity > 0 ? "eat one" : "none left :\("
     decrementBtn.addEventListener("click", () => {
         let newQuantity = --cookie.quantity
         if (newQuantity <= 0) {
             newQuantity = 0
             decrementBtn.textContent = "none left :\("
+            decrementBtn.disabled = true
         }
         cookieQuantity.textContent = `Cookies in stash: ${newQuantity}`
         updateQuantity(cookie, newQuantity)
