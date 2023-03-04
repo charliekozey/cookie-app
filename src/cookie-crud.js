@@ -1,111 +1,73 @@
-fetch("http://localhost:3000/cookies")
-    .then(res => res.json())
-    .then(cookies => cookies.forEach(cookie => renderCookie(cookie)))
+// 1. get the cookies on the page
+// // fetch
+// // renderCookie()
+// // forEach
 
-function renderCookie(cookie) {    
-    const cookieMenu = document.getElementById("cookie-menu")
-    
+// 2. create delete functionality
+// // build delete button
+// // put event listener on delete button
+// // build deleteCookie() function
+// // // send DELETE request to backend
+// // // update DOM to remove the corresponding card
+
+// 3. create patch decrement functionality
+// // build "eat one cookie" button
+// // add event listener to button that calls decrementCookie()
+// // build decrementCookie() 
+// // // update back end (PATCH request)
+// // // update front end to reflect new quantity
+
+fetch("http:/localhost:3000/cookies")
+    .then(response => response.json())
+    .then(cookies => cookies.forEach(jabberwocky => renderCookie(jabberwocky)))
+
+function renderCookie(cookie) {
+    // create dom elements
+    // populate dom elements with info from json
+
+    const menu = document.getElementById("cookie-menu")
     const cookieCard = document.createElement("div")
-    cookieCard.id = "cookie-card"
-    
     const cookieName = document.createElement("h1")
-    cookieName.textContent = cookie.name
-    
     const cookieQuantity = document.createElement("h2")
-    cookieQuantity.textContent = `Cookies in stash: ${cookie.quantity}`
-    
     const cookieImage = document.createElement("img")
-    cookieImage.src = cookie.image_url
-
-    const decrementBtn = document.createElement("button")
-    console.log(cookie.quantity)
-    if (cookie.quantity == 0) {
-        decrementBtn.disabled = true
-    }
-    decrementBtn.textContent = cookie.quantity > 0 ? "eat one" : "none left :("
-    decrementBtn.addEventListener("click", () => {
-        let newQuantity = --cookie.quantity
-        if (newQuantity <= 0) {
-            newQuantity = 0
-            decrementBtn.textContent = "none left :\("
-            decrementBtn.disabled = true
-        }
-        cookieQuantity.textContent = `Cookies in stash: ${newQuantity}`
-        updateQuantity(cookie, newQuantity)
-    })
-
-    const deleteBtn = document.createElement("button")
-    deleteBtn.textContent = "EAT ALL"
-    deleteBtn.addEventListener("click", () => deleteCookie(cookie, cookieCard))
-
     const favoriteBtn = document.createElement("button")
-    let favoriteToggle = cookie.isFavorite
-    favoriteBtn.textContent = cookie.isFavorite ? "★" : "☆"
-    favoriteBtn.addEventListener("click", (e) => {
-        favoriteToggle = !favoriteToggle
-        favoriteBtn.textContent = favoriteToggle ? "★" : "☆"
-        updateFavorite(cookie, favoriteToggle)
-    })
+    const deleteBtn = document.createElement("button")
+    const decrementBtn = document.createElement("button")
 
-    cookieCard.append(cookieName, cookieQuantity, cookieImage, decrementBtn, deleteBtn, favoriteBtn)
-    cookieMenu.append(cookieCard)
-}   
+    cookieName.textContent = cookie.name
+    cookieQuantity.textContent = `cookies in stash: ${cookie.quantity}`
+    cookieImage.src = cookie.image_url
+    favoriteBtn.textContent = "☆"
+    deleteBtn.textContent = "EAT ALL"
+    decrementBtn.textContent = "eat one"
+
+    cookieCard.id = "cookie-card"
+
+    deleteBtn.addEventListener("click", () => deleteCookie(cookie, cookieCard))
+    decrementBtn.addEventListener("click", () => updateQuantity(cookie, cookieQuantity))
+
+    cookieCard.append(cookieName, cookieQuantity, cookieImage, favoriteBtn, deleteBtn, decrementBtn)
+    menu.append(cookieCard)
+}
 
 function deleteCookie(cookie, cookieCard) {
     fetch(`http://localhost:3000/cookies/${cookie.id}`, {
         method: "DELETE"
-    })  
-        .then(cookieCard.remove())
+    })
+
+    cookieCard.remove()
 }
 
-function updateFavorite(cookie, favoriteToggle) {
+function updateQuantity(cookie, cookieQuantity) {
+    let newQuantity = cookie.quantity
+    newQuantity--
+    cookieQuantity.textContent = `cookies in stash: ${newQuantity}`
+
     fetch(`http://localhost:3000/cookies/${cookie.id}`, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({"isFavorite": favoriteToggle})
+        body: JSON.stringify({quantity: --cookie.quantity})
     })
 }
-
-function updateQuantity(cookie, newQuantity) {
-    fetch(`http://localhost:3000/cookies/${cookie.id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({"quantity": newQuantity})
-    })
-        .then(res => res.json())
-        .then(cookie => console.log(cookie))
-}
-
-function addFormListener() {
-    const cookieForm = document.getElementById("new-cookie-form")
-
-    cookieForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-
-        const newCookie = {
-            "name": e.target.name.value,
-            "image_url":  e.target.image.value,
-            "quantity":  parseInt(e.target.quantity.value),
-            "isFavorite": false
-        }
-        console.log(e.target.name.value)
-
-        fetch("http://localhost:3000/cookies", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newCookie)
-        })
-            .then(res => res.json())
-            .then(cookie => renderCookie(cookie))
-
-        e.target.reset()
-    })
-}
-
-addFormListener()
