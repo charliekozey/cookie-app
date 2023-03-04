@@ -1,8 +1,6 @@
-function fetchCookies() {
-    fetch("http://localhost:3000/cookies")
-        .then(res => res.json())
-        .then(cookies => cookies.forEach(cookie => renderCookie(cookie)))
-}
+fetch("http://localhost:3000/cookies")
+    .then(res => res.json())
+    .then(cookies => cookies.forEach(cookie => renderCookie(cookie)))
 
 function renderCookie(cookie) {    
     const cookieMenu = document.getElementById("cookie-menu")
@@ -20,10 +18,11 @@ function renderCookie(cookie) {
     cookieImage.src = cookie.image_url
 
     const decrementBtn = document.createElement("button")
-    if (cookie.quantity = "0") {
+    console.log(cookie.quantity)
+    if (cookie.quantity == 0) {
         decrementBtn.disabled = true
     }
-    decrementBtn.textContent = cookie.quantity > 0 ? "eat one" : "none left :\("
+    decrementBtn.textContent = cookie.quantity > 0 ? "eat one" : "none left :("
     decrementBtn.addEventListener("click", () => {
         let newQuantity = --cookie.quantity
         if (newQuantity <= 0) {
@@ -109,5 +108,4 @@ function addFormListener() {
     })
 }
 
-fetchCookies()
 addFormListener()
