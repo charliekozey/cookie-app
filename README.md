@@ -14,7 +14,7 @@ Navigate to ```"http://localhost:3000/cookies"``` in your browser to be sure you
 
 ## Core Deliverables
 
-![[Screenshot of completed challenge]]()
+![[Screenshot of completed challenge]](assets/cookie-app-screenshot.png)
 
 1. Fetch all the cookies and display them on the page. Each cookie should be contained in its own div with a class of ```cookie-card```. Each card should display the cookie's:
    - Name
