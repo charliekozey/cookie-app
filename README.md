@@ -2,6 +2,8 @@
 
 ## Setup
 
+Make sure you're working from the ```starter-code``` branch of this repository. Once you've cloned it to your computer, run ```git status``` to show which branch you're on. To change branches, run ```git checkout starter-code```
+
 Start up your server by running:
 
 ```bash
